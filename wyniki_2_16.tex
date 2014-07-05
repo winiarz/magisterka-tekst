@@ -3,9 +3,15 @@ Czas pracy poszczególnych implementacji przedstawia tabela:
 \begin{table}
 \caption{ czas pracy poszczególnych implementacji problemu N-Ciał dla $2^{16}$ punktów materialnych }
 \label{wyniki}
-\begin{tabular}{ |r|l| }
+
+\begin{tabular}{ |p{\dimexpr 0.5\linewidth}|
+                  p{\dimexpr 0.5\linewidth}| }
  \hline
  implementacja na CPU & 15s \\
+ \hline
+ najprostszy & 10s \\
+ \hline
+ z float4 & 4.34s \\
  \hline
 \end{tabular}
 
