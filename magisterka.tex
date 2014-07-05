@@ -3,19 +3,26 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{graphicx}
+\author{Konrad Winiarski}
+\title{Implementacja problemu N-Ciał na kartach graficznych}
 
 \begin{document}
+\maketitle
+\pagebreak
+
 \begin{flushleft}
 
-\title{Implementacja problemu N-Ciał na kartach graficznych}
-\section { Wstęp - opis problemu }
-\section { Optymalizacja dla procesorów CPU w OpenMP}
-\section { Implementacja dla GPU - wykorzystanie antysymetrii wzoru }
-\section { Implementacja dla GPU - 'Array of structures' vs 'Structure of arrays' }
-\section { Wyniki pomiarów czasu pracy i ich analiza }
-{
+\input{Rozdzial_1/rozdzial1.tex}
+\input{Rozdzial_2/rozdzial2.tex}
+\input{Rozdzial_3/rozdzial3.tex}
+\input{Rozdzial_4/rozdzial4.tex}
+
+\section { Optymalizacja dla procesorów CPU w OpenMP }
+\section { Porównanie wydajności }
+\subsection {Środowisko testowe}
+\subsection {Pomiary czasu pracy}
 \input{wyniki_2_16.tex}
-}
+\subsection {Analiza wyników}
 \section { Wnioski }
 
 
