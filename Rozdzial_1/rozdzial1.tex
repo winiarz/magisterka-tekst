@@ -9,10 +9,21 @@ Każdy z tych punktów oddziałuje na każdy inny siłą zadaną wzorem:
 \end{center}
 
 czyli prawem powszechnego ciążenia Izaaka Newtona.\linebreak
-...
+Przykładami takich problemów mogą być symulacja galaktyki, układu planetarnego itp.\linebreak
 Obliczenie trajektorii wymaga rozwiązania układu równań różniczkowych:
 \begin{center}
 \input{Wzory/grawitacja_rozniczkowo.tex} gdzie i = 1 .. n 
 \end{center}
+Do tej pory nie rozwiązano tego układu w sposób analityczny, dlatego rozwiązanie przybliża się stosując metody numeryczne.
 
-\subsection {Sposoby symulowania punktów materialnych}
+\subsection {Metody symulowania punktów materialnych}
+
+Znając początkowe położenie, prędkość oraz przyspieszenie ruch punktu materialnego można symulować na kilka sposobów:
+
+\subsubsection {Reguła Runge-Kutty 1 rzędu - Metoda Eulera}
+\input{Wzory/metoda_eulera.tex}
+\subsubsection {Reguła Runge-Kutty 2 rzędu - Metoda punktu środkowego}
+\input{Wzory/metoda_midpoint.tex}
+
+\subsubsection {Metoda Verleta}
+\input{Wzory/metoda_verleta.tex}
