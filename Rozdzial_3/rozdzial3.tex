@@ -1,5 +1,11 @@
 
-\section { Implementacja dla GPU - wykorzystanie antysymetrii wzoru }
+\section { Implementacja dla GPU - wykorzystanie 3 zasady dynamiki }
 \subsection {Możliwość dwukrotnego przyspieszenia}
+
+Wzór na grawitację jest antysymetryczny.
+\input{Wzory/grawitacja_antysymetria.tex}
+Mając siłę działającą na ciało A powodowaną przez ciało B, wystarszy pomnożyć ją przez -1 i mamy siłą działającą na ciało B. Daje to teoretyczną możliwość miemal dwukrotnego skrócenia obliczeń.
+
 \subsection {Niezbędna synchronizacja}
-\subsection {Problemy z synchronizacją między blokami wątków}
+W wersji podstawowej każdy wątek ma przydzielone punkty dla których aktualizuje położenie i prędkość. Gdy 2 wątki liczą siłę działającą na ten sam punkt muszą się zsynchronizować przy sumowaniu tych sił (obliczaniu siły wypadkowej). Używanie trzeciej zasady dynamiki powoduje konieczność dużej ilości synchronizacji, także między grupami wątków. Powoduje to derastyczny spadek wydajności algorytmu.
+Porównanie wydajności algorytmu podstawowego i wykorzystującego 3 zasadę dynamiki przedstawia tabela:
