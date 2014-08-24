@@ -1,6 +1,12 @@
 
-\section { Implementacja dla GPU - 'Array of structures' vs 'Structure of arrays' }
-\subsection { Implementacja Array of structures }
-\subsection { Implementacja Structure of arrays }
+\section { Implementacja dla GPU - ułożenie danych w pamięci }
+Dane dla algorytmu można dostarczyć w różny sposób:
+\subsection { Tablica struktur }
+Parametry pojedynczego punktu ułożone są w strukturę, a całe strukturey w tablicę. Takie podejście sprawia, że OpenCL zaokrągla rozmiar struktury w górę do pełnych 16 bajtów tracąc przy tym 12,5 \% pamięci.
+\subsection { Struktura tablic }
+Współrzędne położenia x wszystkich punktów przechowywane są w jednej tablicy, współrzędne y w osobnej. Analogicznie współrzędne położenia z, kolejne współrzędne wektorów prędkości oraz masy punktów. 
+Porównanie wydajności tego samego algorytmu przy różnym ułożeniu danych przedstawia tabela:
+
 \subsection {Wykorzystanie operacji wektorowych}
+
 \subsection { Porównanie }
