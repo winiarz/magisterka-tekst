@@ -1,0 +1,15 @@
+
+\section { Wykorzystanie pamięci lokalnej oraz rejestrów }
+
+%Przypisanie wątkowi większej ilości punktów do jednoczesnego symulowania powoduje, że zmniejsza się liczba odczytań pamięci globalnej niezbędna do wykonania całości obliczeń. 
+
+
+
+Przykład:
+W przypadku Podstawowego algorytmu potrzebujemy dla każdego punktu odczyta jego położenie oraz położenia wszystkich innych punktów. Razem daje to N*(1+N) odczytań położeń z globalnej pamięci. Przy jednoczesnym obliczaniu 2 punktów potrzeba 2 odczytania ( przetwarzane punkty ) oraz jedno odczytanie wszystkich czyli N/2  * ( 2 + N ) odczytań.
+
+Ogólnie, gdy symuluje się jednocześnie k (zakładam, że k dzieli N) punktów potrzeba N/k * (k + N) = N + N^2/k odczytań z pamięci. Widać wyraźnie, że czym większe k tym mnniejsza ilość odczytań. Nasuwa się zatem proste pytanie - ile maksymalnie punktów jeden wątek może symulować jednocześnie?
+
+\subsection{}
+
+Wątek, do symulacji punktu potrzebuje 6 zmiennych. Pierwse 3 z nich to położenie punktu, kolejne 3 to miejsce na obliczone przyspieszenie.
