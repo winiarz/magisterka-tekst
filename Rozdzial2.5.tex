@@ -1,0 +1,24 @@
+
+\section { Optymalizacje podstawowej implementacji }
+
+\subsection { Siła między punktem a samy sobą }
+Gdybyśmy chcieli obliczyć siłę grawitacji między 2 punktami o tym samym położeniu musielibyśmy dzielić przez 0. Wykonanie tego działania daje wynik NaN (Not-a-Number) { ang. nie liczbowy }. Dalsze obliczenia z tym winikiem spowodowałyby nieprawidłowy wynik algorytmu. Sytuacja taka zdarza się gdy próbujemy obliczyć oddziaływanie między punktem a samym sobą. W podstawowej implementacji zabezpieczam(y???) się przed tą sytuacją za pomocą if'a który sprawdza czy różne są indeksy punktów. Rozwiązanie to nie działa gdy 2 punkty o różnych indeksach mają to samo położenie.
+Rozwiązanie takie jest jednak bardzo wolne ze względu na częste sprawdzanie warunku. \linebreak
+
+Problem ten można rozwiązać dodając do kwadratu obliczonej odległości bardzo małą liczbę ( epsilon ). Dla potrzeb mojej implementacji przyjąłem epsilon = 0,0000001. Dzięki temu możemy bezpiecznie dzielić przez odległość, gdyż jest większa od zera. Przy liczeniu siły między punktem a samym sobą obliczona siła będzie równa zero, ponieważ różnica położeń jest wektorem zerowym. W przypadku liczenia siły między różnymi punktami obliczona siła może nieznacznie różnić się od poprawnej wartości.
+
+Takie podejście wymaga dodatkowego dodawania przy każdym obliczaniu odległości, jednak jest to kosz znacznie mniejszy od sprawdzania warunku
+
+Usyskane przyspieszenie prezentuje tabela:
+\linebreak
+
+%\linebreak
+Opisana wyżej optymalizacja powoduje wzrost wydajności około ??? razy. 
+
+
+\subsection { ??? }
+Licząc wypadkową siłę działającą na wybrany punkt przy każdym obliczaniu siły grawitacji mnożymy przez jego masę. Później zaś dzielimy przez nią otzymując przyspieszenie. Dzięki prawom działań na wektorach te dwie operacje możemy pominąć bez zmiany wyniku. Przyspieszenie uzyskane dzięki tej modyfikacji przedstawia tabela:
+
+
+\subsection { Odwrotność pierwiastka }
+OpenCL ma zestaw funkcji. Są wśród nich funkcje trygonometryczne, logarytmy, zaokrąglenia, wartość bezwzględna itp. Na kartach graficznych wiele z nich jest przyspieszanych sprzętowo. Jedną z nich jest funkcja sqrt - pierwiastek kwadratowy z liczby używany w podstawowej implementacji do obliczania odległości. Po podniesieniu do 3 potęgi trzeba wykonać dość kosztowną operację dzielenia. Bardziej odpowiednią funckją jest zatem rsqrt ( odwrotność pierwiastka ). Przyspieszenie przedstawia tabela.

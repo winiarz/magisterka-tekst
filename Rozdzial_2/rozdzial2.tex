@@ -3,7 +3,35 @@
 
 \subsection{ Framework OpenCL }
 
+OpenCL jest technologią, która pozwala wykorzystać karty graficzne do wykonywania dowolnych obliczeń. Składa się z dwóch części. Pierwszą jest biblioteka służąca do kontrolowania pracy kerneli. Jest ona dostępna dla wielu języków programowania, między innymi C, C++, Java, Python. Drugą częścią jest język oparty na języku C, który służy do pisania kerneli.
+\linebreak
+OpenCL został zaimplementowany dla najpopularniejszych współczesnych platform sprzętowych i systemowych. Jest dostępny dla urządzeń producentów takich jak: Nvidia, Amd, Intel, systemów operacyjnych: Windows, Linux, OSX, a nawet dla użądzeń mobilnych pracujących pod kontrolą systemu Android.
+
 \subsection{ Implementacja po stronie host'a }
 
+Urządzenia takie jak karta graficznie nie są przystosowane do samodzielnej pracy. Ich używanie wymaga programu dla procesora CPU, który pełni rolę kontrolera dla kerneli.
 
-\subsection{ Implementacja po stronie device }
+\subsubsection{ Wybór i przygotowanie kontekstu urządzenia }
+Pierwszym krokiem programu jest pobranie informacji o dostępnych urządzeniach. OpenCL pozwala na sprawdzenie informacji takich jak: nazwa urządzenia, dostępna pamieć, maksymalna ilość wątków oraz lista wspieranych rozszerzeń. Informacje te pozwalają na wybranie odpowiedniego urządzenia z listy.
+
+\subsubsection{ Kompilacja kernela }
+Kod binarny dla różnych urządzeń nie musi być taki sam. Aby kernel mógł działać na nich wszystkich można go skompilować dopiero po wybraniu urządzenia, a zatem w czasie uruchomienia programu. 
+
+\subsubsection{ Rezerwacja pamięci na urządzeniu }
+
+
+\subsubsection{ Kopiowanie danych testowych na urządzenie }
+Kernel nie ma dostępu do jakichkolwiek zasobów poza urządzeniem. Wszystkie dane do obliczeń muszą być kopiowane po stronie host'a.
+
+\subsubsection{ Uruchomienie kernela }
+
+
+\subsubsection{ Kopiowanie wyników z urządzenia }
+Po zakończeniu obliczeń następuje kopiowanie wyników z powrotem do pamięci RAM. Ten krok nie jest konieczny w niektórych przypadkach. Np. gdy będą one używane do następnych obliczeń. Mogą one też służyć do wyświetlenia na ekranie dzięki współpracy z OpenGL. 
+
+
+\subsection{ Podstawowa implementacja po stronie device }
+
+Punkty zostają podzielone między wątki za pomocą pierwszej pętli for. Obliczenia dla każdego z punktów modyfikują tylko jego poprzednią pozycję ( zastępując ją nową ), której nie wykorzystuje żaden inny wątek. Dzięki tej prostej zasadzie nie ma konieczności wprowadzania jakiejkolwiek synchronizacji między wątkami.
+\lstinputlisting[language=C]{Source/podstawowa.c}
+

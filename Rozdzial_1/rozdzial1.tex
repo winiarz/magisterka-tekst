@@ -25,7 +25,29 @@ Znając początkowe położenie, prędkość oraz przyspieszenie ruch punktu mat
 \input{Rozdzial_1/metoda_eulera.tex}
 
 \subsubsection {Metoda punktu środkowego}
-\input{Wzory/metoda_midpoint.tex}
+Metoda punktu środkowego jest modyfikacją metody Eulera. Najpierw stosujemy metodę Eulera, tylko ze zmiejszonym o połowę krokiem czasowym. Uzyskany wynik nazywamy ``punktem środkowym''. Następnie obliczamy przyspieszenie w tym punkcie. Położenie oraz przyspieszenie punktu aktualizujemy używając punktu startowego i przyspieszenia w punkcie środkowym.
 
-\subsubsection {Metoda Verleta}
+\begin{center}
+\input{Wzory/metoda_midpoint.tex}
+\end{center}
+
+ ??? Coś o metodach Rungego-Kutty ???
+Metoda punktu środkowego jest dokładniejsza od metody Eulera, jej błąd jest rzędu $ O( \Delta t ^{3} ) $
+Jednak w przypadku problemu N-Ciał metoda ta jest bardzo niewydajna. Wymaga ona bowiem dwukrotnego wykonywania obliczeń przyspieszeń punktów, a zatem odległości między nimi, co stanowi najdłuższy etap obliczeń.
+
+\subsubsection {Algorytm Verleta}
+Algorytm Verleta opiera się na rozwinięciu funkcji położenia w szereg Taylora do trzeciej pochodnej dla kroku czasowego do przodu i w tył.
+\linebreak
+Tu będą obliczenia
+\linebreak
+Po prostych przekształceniach otrzymujemy:
+\begin{center}
 \input{Wzory/metoda_verleta.tex}
+\end{center}
+
+Obliczenie następnego położenia w czasie nie wymaga obliczania prędkości punktu, a jedynie znajomości jego 2 poprzednich położeń. 
+Obliczenie prędkości nie jest jednak wymagane w przypadku problemu N-Ciał, gdyż siły zależą tylko od położenia punktów.
+\linebreak
+
+
+Według mojej oceny metoda Verleta jest najlepsza do rozwiązywania problemu N-Ciał i dlatego zdecydowałem się ją zastosować w moih implementacjach.
