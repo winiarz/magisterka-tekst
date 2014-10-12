@@ -19,11 +19,15 @@ Kod binarny dla różnych urządzeń nie musi być taki sam. Aby kernel mógł d
 
 \subsubsection{ Rezerwacja pamięci na urządzeniu }
 
+W OpenCL rezerwacja pamięci globalnej możliwa jest tylko po stronie host'a. Niezbędna jest rezerwacja pamięci zarówno dla danych testowych, jak i dla wyników obliczeń.
 
 \subsubsection{ Kopiowanie danych testowych na urządzenie }
-Kernel nie ma dostępu do jakichkolwiek zasobów poza urządzeniem. Wszystkie dane do obliczeń muszą być kopiowane po stronie host'a.
+ 
+Kernel nie ma dostępu do jakichkolwiek zasobów poza urządzeniem ( dysków twardych, sieci, pamięci RAM ). Wszystkie dane do obliczeń muszą być kopiowane przed uruchomieniem kernela.
 
 \subsubsection{ Uruchomienie kernela }
+
+Uruchomienie kernela sprowadza się do ustawienia jego argumentów i dodania do kolejki. OpenCL automatycznie pobiera kolejne pozycje z kolejki i je uruchamia. Później blokująca funkcja 'clFinish' pozwala na oczekiwanie na zakończenie obliczeń.
 
 
 \subsubsection{ Kopiowanie wyników z urządzenia }
