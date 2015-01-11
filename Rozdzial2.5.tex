@@ -1,26 +1,24 @@
 
 \section { Optymalizacje podstawowej implementacji }
 
+% w openCL nie ma automatycznych optymalizacji - programista musi sam zadbać o optymalny kod
+
 \subsection { Siła między punktem a samym sobą }
 Obliczając siły między punktami może zdarzyć się sytuacja, że dwa punktty mają dokładnie to samo położenie. Chcąc obliczyć siłę grawitacji między nimi dochodzimy do wniosku, żejest to niewykonalne ze względu na konieczność dzielenia przez odległość równą 0. Wykonanie takiego dzielenia jest możliwe na procesorze graficznym, ale daje wynik NaN (ang. not a number). Dalsze obliczenia z tym wynikiem powodują utratę pozostałych wyników. Podstawowa implementacja jest zabezpieczona przed tą sytuacją za pomocą instrukcji ``if'', która sprawdza czy odległość między punktami jest większa od 0.\linebreak
- // dlaczego if'y są złe
+Architektura GPU zakłada, że żaden wątek nie pracuje samodzielnie. Wątki pogrupowane są w grupy zwane czołem fali ( ang. wavefront ). W obecnych układach mają rozmiar 32 lub 64 wątków. Wszystkie wątki z tej samej grupy muszą wykonywać tą samą instrukcję. W przypadku rozgałęzienia w algorytmie, gdy tylko część wątków musi wykonać blok instrukcji pozostałe wątki z grupy muszą czekać aż zostanie on wykonany. Z tego powodu należy unikać instrukcji warunkowych w kodzie kernela.\linebreak
+Problem z dzieleniem przez zero można rozwiązać dodając do kwadratu obliczonej odległości bardzo małą liczbę ( epsilon ). Dla potrzeb tej pracy zostało przyjęte epsilon = 0,0000001. W tej sytuacji można bezpiecznie dzielić przez odległość, gdyż jest większa od zera. Przy liczeniu siły między punktem a samym sobą obliczona siła będzie równa zero, ponieważ różnica położeń jest wektorem zerowym. W pozostałych przypadkach ze względu na małą wartość epsilon obliczona siła może nieznacznie różnić się od poprawnej wartości.
 
- 
-
-Problem ten można rozwiązać dodając do kwadratu obliczonej odległości bardzo małą liczbę ( epsilon ). Dla potrzeb mojej implementacji zostało przyjęte epsilon = 0,0000001. W tej sytuacji można bezpiecznie dzielić przez odległość, gdyż jest większa od zera. Przy liczeniu siły między punktem a samym sobą obliczona siła będzie równa zero, ponieważ różnica położeń jest wektorem zerowym. W pozostałych przypadkach ze względu na małą wartość epsilon obliczona siła może nieznacznie różnić się od poprawnej wartości.
-
-Takie podejście wymaga dodatkowego dodawania przy każdym obliczaniu odległości, jednak jest to kosz znacznie mniejszy od sprawdzania warunku
+Takie podejście wymaga dodatkowego dodawania przy każdym obliczaniu odległości, jednak jest to koszt znacznie mniejszy od sprawdzania warunku
 
 Usyskane przyspieszenie prezentuje tabela:
 \linebreak
 
-%\linebreak
 Opisana wyżej optymalizacja powoduje wzrost wydajności około ??? razy. 
 
 
-\subsection { ??? }
+\subsection { Zastosowanie praw działań na wektorach }
 Licząc wypadkową siłę działającą na wybrany punkt przy każdym obliczaniu siły grawitacji mnożymy przez jego masę. Następnie zaś dzielimy przez tą samą masę otrzymując przyspieszenie. Dzięki prawom działań na wektorach te dwie operacje możemy pominąć bez zmiany wyniku. Przyspieszenie uzyskane dzięki tej modyfikacji przedstawia tabela:
 
 
-\subsection { Odwrotność pierwiastka }
-OpenCL ma zestaw funkcji. Są wśród nich funkcje trygonometryczne, logarytmy, zaokrąglenia, wartość bezwzględna itp. Na kartach graficznych wiele z nich jest przyspieszanych sprzętowo. Jedną z nich jest funkcja sqrt - pierwiastek kwadratowy z liczby używany w podstawowej implementacji do obliczania odległości. Po podniesieniu do 3 potęgi trzeba wykonać dość kosztowną operację dzielenia. Bardziej odpowiednią funckją jest zatem rsqrt ( odwrotność pierwiastka ). Przyspieszenie przedstawia tabela.
+\subsection { Użycie funkcji wbudowanych w OpenCL }
+OpenCL ma zestaw funkcji. Są wśród nich funkcje trygonometryczne, logarytmy, zaokrąglenia, wartość bezwzględna itp. Na kartach graficznych wiele z nich jest przyspieszanych sprzętowo. Jedną z nich jest funkcja sqrt - pierwiastek kwadratowy z liczby używany w podstawowej implementacji do obliczania odległości. Po podniesieniu do 3 potęgi trzeba wykonać czasochłonną operację dzielenia. Bardziej odpowiednią funckją jest zatem rsqrt ( odwrotność pierwiastka ). Przyspieszenie przedstawia tabela.

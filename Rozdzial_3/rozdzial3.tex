@@ -1,11 +1,24 @@
 
-\section { Implementacja dla GPU - wykorzystanie 3 zasady dynamiki }
-\subsection {Możliwość dwukrotnego przyspieszenia}
+%\section { Implementacja dla GPU - wykorzystanie 3 zasady dynamiki }
+%\subsection {Możliwość dwukrotnego przyspieszenia}
 
-Wzór na grawitację jest antysymetryczny.
-\input{Wzory/grawitacja_antysymetria.tex}
-Mając siłę działającą na ciało A powodowaną przez ciało B, wystarszy pomnożyć ją przez -1 i mamy siłą działającą na ciało B. Daje to teoretyczną możliwość miemal dwukrotnego skrócenia obliczeń.
+%Wzór na grawitację jest antysymetryczny.
+%\input{Wzory/grawitacja_antysymetria.tex}
+%Mając siłę działającą na ciało A powodowaną przez ciało B, wystarszy pomnożyć ją przez -1 i mamy siłą działającą na ciało B. Daje to teoretyczną możliwość miemal dwukrotnego skrócenia obliczeń.
 
-\subsection {Niezbędna synchronizacja}
-W wersji podstawowej każdy wątek ma przydzielone punkty dla których aktualizuje położenie i prędkość. Gdy 2 wątki liczą siłę działającą na ten sam punkt muszą się zsynchronizować przy sumowaniu tych sił (obliczaniu siły wypadkowej). Używanie trzeciej zasady dynamiki powoduje konieczność dużej ilości synchronizacji, także między grupami wątków. Powoduje to derastyczny spadek wydajności algorytmu.
-Porównanie wydajności algorytmu podstawowego i wykorzystującego 3 zasadę dynamiki przedstawia tabela:
+%\subsection {Niezbędna synchronizacja}
+%W wersji podstawowej każdy wątek ma przydzielone punkty dla których aktualizuje położenie i prędkość. Gdy 2 wątki liczą siłę działającą na ten sam punkt muszą się zsynchronizować przy sumowaniu tych sił (obliczaniu siły wypadkowej). Używanie trzeciej zasady dynamiki powoduje konieczność dużej ilości synchronizacji, także między grupami wątków. Powoduje to derastyczny spadek wydajności algorytmu.
+%Porównanie wydajności algorytmu podstawowego i wykorzystującego 3 zasadę dynamiki przedstawia tabela:
+
+\section { Środowisko testowe }
+
+Dla potrzeb tej pracy implementacja po stronie hosta zaimplementowana została w języku C++ przy użyciu kompilatora gcc. Implementacja dla CPU została zoptymalizowana za pomocą drugiego poziomu optymalizacji kompilatora gcc. Całość pracowała pod kontrolą systemu Linux ( Ubuntu 14.10 ). 
+
+Testy wydajności zostały przeprowadzone na kilku platformach sprzętowych:
+
+1. AMD FX6200 + Radeon6770
+2. Intel Core i5-450M + GeForce 325M
+3. AMD Phenon ??? + Radeon5850?
+4. ???
+
+Uzyskane wyniki mogłyby zostać (zaburzone?) przez odświerzanie ekranu, platego wszystkie pomiary zostały przeprowadzone przy wyłączonym środowisku graficznym. Każdy pomiar został powtórzony 10 razy, a czasy prezentowane w tabelach są średnią arytmetyczną uzyskanych wyników. 
