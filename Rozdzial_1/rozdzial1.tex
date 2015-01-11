@@ -17,7 +17,7 @@ Obliczenie trajektorii wymaga rozwiązania układu równań różniczkowych drug
 \end{center}
 
 
-Do tej pory nie rozwiązano tego układu w sposób analityczny dla $n > 2$, dlatego rozwiązanie przybliża się stosując metody numeryczne.
+Do tej pory nie rozwiązano tego układu w sposób analityczny dla $n > 2$, dlatego rozwiązanie przybliża się stosując metody numeryczne. Istnieje kilka metod pozwalających na przybliżanie kolejnych pozycji punktu materialnego. Oto najważniejsze z nich:
 
 \subsection {Metody symulowania punktów materialnych}
 
@@ -46,8 +46,7 @@ Po prostych przekształceniach otrzymujemy:
 \end{center}
 
 Obliczenie następnego położenia w czasie nie wymaga obliczania prędkości punktu, a jedynie znajomości jego 2 poprzednich położeń. 
-Obliczenie prędkości nie jest jednak wymagane w przypadku problemu N-Ciał, gdyż siły zależą tylko od położenia punktów.
+Obliczenie prędkości nie jest jednak wymagane w przypadku problemu N-Ciał, gdyż siły zależą tylko od obecnego położenia punktów. 
 \linebreak
 
-
-Według mojej oceny metoda Verleta jest najlepsza do rozwiązywania problemu N-Ciał i dlatego zdecydowałem się ją zastosować w moih implementacjach.
+W przypadku problemu N-Ciał najbardziej czasochłonną część obliczeń stanowi obliczenie sił między punktami. Metody Rungego-Kutty zostały odrzucone ze względu na konieczność kilkukrotnego powtarzania tej części obliczeń. Metoda Verleta jest najdokladniejsza spośród pozostałych i dlatego na potrzeby tej zastosowana została na potrzeby tej pracy.
