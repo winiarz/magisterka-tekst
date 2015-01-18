@@ -1,0 +1,16 @@
+
+\section{Podsumowanie (jak lepiej to nazwać?)}
+
+Ze względu na różnorodność kart graficznych niemożliwe jest stworzenie jednego algorytmu optymalnego dla nich wszystkich. Jek widać na przykładzie optymalizacji zastosowanych w tej pracy mają zupełńie inny wpływ na wydajnopść algorytmu w zależności od modelu GPU. OpenCl daje jednak możliwość odczytania wielu parametrów specyfikacji użądzenia, co daje możliwość sparametryzowania algorytmu cechami użądzenia. Najprostszym przykładem takiej parametryzacji jest tradycyjna równoległa pętla for, parametrem w tym przypadku jest maksymalna liczba równoległych wątków dostępnych na użądzeniu.
+\linebreak
+
+Tak jak w przykładzie tej pracy iWlość jednocześnie przetwarzanych punktów została uzależniona od dostępnej pamięci prywatnej i współdzielonej.
+\linebreak
+
+W innych przypadkach o wyborze optymalnej impementacji może decydować np. dostępność operacji wektorowych o odpowiednim rozmiarze, przyspieszenie sprzętowe dla funkcji takich jak sqrt, sin, log.
+
+Sparametryzowany w ten sposób algorytm może być wykorzystany w oprogramowaniu uruchamianym na komputerze klienta. Wtedy bez względu na posiadany przez niego sprzęt będzie działało wydajnie.
+\linebreak
+
+
+

@@ -11,14 +11,17 @@ Problem z dzieleniem przez zero można rozwiązać dodając do kwadratu obliczon
 Takie podejście wymaga dodatkowego dodawania przy każdym obliczaniu odległości, jednak jest to koszt znacznie mniejszy od sprawdzania warunku
 
 Usyskane przyspieszenie prezentuje tabela:
-\linebreak
-
-Opisana wyżej optymalizacja powoduje wzrost wydajności około ??? razy. 
+\input{tabele/wywalenie_if.tex}
+% jakiś komentarz? dwukrotny wzrost wydajności? czemu na 325M prawie nie widać różnicy?
 
 
 \subsection { Zastosowanie praw działań na wektorach }
 Licząc wypadkową siłę działającą na wybrany punkt przy każdym obliczaniu siły grawitacji mnożymy przez jego masę. Następnie zaś dzielimy przez tą samą masę otrzymując przyspieszenie. Dzięki prawom działań na wektorach te dwie operacje możemy pominąć bez zmiany wyniku. Przyspieszenie uzyskane dzięki tej modyfikacji przedstawia tabela:
 
+\input{tabele/bez_dzielenia_przez_mase.tex}
+%komentarz - nieznaczny wzrost wydajności
 
 \subsection { Użycie funkcji wbudowanych w OpenCL }
 OpenCL ma zestaw funkcji. Są wśród nich funkcje trygonometryczne, logarytmy, zaokrąglenia, wartość bezwzględna itp. Na kartach graficznych wiele z nich jest przyspieszanych sprzętowo. Jedną z nich jest funkcja sqrt - pierwiastek kwadratowy z liczby używany w podstawowej implementacji do obliczania odległości. Po podniesieniu do 3 potęgi trzeba wykonać czasochłonną operację dzielenia. Bardziej odpowiednią funckją jest zatem rsqrt ( odwrotność pierwiastka ). Przyspieszenie przedstawia tabela.
+
+\input{tabele/rsqrt.tex}
