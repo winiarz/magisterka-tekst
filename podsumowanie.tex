@@ -1,13 +1,28 @@
 
 \section{Podsumowanie (jak lepiej to nazwać?)}
 
-Ze względu na różnorodność kart graficznych niemożliwe jest stworzenie jednego algorytmu optymalnego dla nich wszystkich. Jek widać na przykładzie optymalizacji zastosowanych w tej pracy mają zupełńie inny wpływ na wydajnopść algorytmu w zależności od modelu GPU. OpenCl daje jednak możliwość odczytania wielu parametrów specyfikacji użądzenia, co daje możliwość sparametryzowania algorytmu cechami użądzenia. Najprostszym przykładem takiej parametryzacji jest tradycyjna równoległa pętla for, parametrem w tym przypadku jest maksymalna liczba równoległych wątków dostępnych na użądzeniu.
+%Ze względu na różnorodność kart graficznych niemożliwe jest stworzenie jednego algorytmu optymalnego dla nich wszystkich.
+Karty graficzne chociaż ich architektury są zbliżone to jednak różnią się szczegółami technicznymi. Poszczególne model ma inne rozmiary pamięci globalnej, współdzielonej jak i stałej.
+Mają inną maksymalną liczbę wątków, pogrupowaną w inne grupy w zależności od producenta ( nazywane WARP w przypadku NVIDIA, lub ... w przypadku AMD ). Przyspieszają sprzętowo różne operacje. Te różnice sprawiają, że na każdej karcie inna implementacja może okazać się tą optymalną. \linebreak
+
+
+Standard OpenCL daje tylko możliwość uruchomienia algorytmu na wielu platformach sprzętowych. Jednak znajomość sprzętu na jakim kernel będzie wykonywany dalej jest niezbędna do optymalizacji. 
+Uniemożliwia to napisanie programu, który działa optymalnie na każdym sprzęcie. Gdyby udało się to osiągnąć możnaby pisać komercyjne aplikacje dzilające na sprzęcie klienta bez znajomości tego sprzętu. \linebreak
+% coś o komercyjnym zastosowaniu
+
+
+
+%Widać to na przykładzie tej pracy. Zastosowane optymalizacje mają zupełnie inny wpływ na wydajnopść algorytmu w zależności od modelu GPU. 
+
+OpenCl daje jednak możliwość odczytania wielu parametrów specyfikacji użądzenia. Można wykorzystać je jako parametry algorytmu. Najprostszym tego przykładem jest tradycyjna równoległa pętla for. Parametrem w tym przypadku jest maksymalna liczba wątków dostępnych na użądzeniu.
 \linebreak
 
-Tak jak w przykładzie tej pracy iWlość jednocześnie przetwarzanych punktów została uzależniona od dostępnej pamięci prywatnej i współdzielonej.
+\lstinputlisting[language=C]{Source/petla_for.c}
+
+Tak jak w przykładzie tej pracy ilość jednocześnie przetwarzanych punktów została uzależniona od dostępnej pamięci prywatnej i współdzielonej.
 \linebreak
 
-W innych przypadkach o wyborze optymalnej impementacji może decydować np. dostępność operacji wektorowych o odpowiednim rozmiarze, przyspieszenie sprzętowe dla funkcji takich jak sqrt, sin, log.
+W innych przypadkach o wyborze optymalnej implementacji może decydować np. dostępność operacji wektorowych o odpowiednim rozmiarze, przyspieszenie sprzętowe dla funkcji takich jak sqrt, sin, log.
 
 Sparametryzowany w ten sposób algorytm może być wykorzystany w oprogramowaniu uruchamianym na komputerze klienta. Wtedy bez względu na posiadany przez niego sprzęt będzie działało wydajnie.
 \linebreak
