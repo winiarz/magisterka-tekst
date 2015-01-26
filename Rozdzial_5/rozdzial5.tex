@@ -8,8 +8,22 @@
 Przykład:
 W przypadku Podstawowego algorytmu potrzebujemy dla każdego punktu odczyta jego położenie oraz położenia wszystkich innych punktów. Razem daje to N*(1+N) odczytań położeń z globalnej pamięci. Przy jednoczesnym obliczaniu 2 punktów potrzeba 2 odczytania ( przetwarzane punkty ) oraz jedno odczytanie wszystkich czyli N/2  * ( 2 + N ) odczytań.
 
-Ogólnie, gdy symuluje się jednocześnie k (zakładam, że k dzieli N) punktów potrzeba $N/k * (k + N) = N + N^2/k$ odczytań z pamięci. Widać wyraźnie, że czym większe k tym mnniejsza ilość odczytań. Nasuwa się zatem proste pytanie - ile maksymalnie punktów jeden wątek może symulować jednocześnie?
+Ogólnie, gdy symuluje się jednocześnie k (zakładam, że k dzieli N) punktów potrzeba $N/k * (k + N) = N + N^2/k$ odczytań z pamięci. Widać wyraźnie, że czym większe k tym mnniejsza ilość odczytań. Nasuwa się zatem proste pytanie - ile maksymalnie punktów jeden wątek może symulować jednocześnie? \linebreak
 
-\subsection{}
 
-Wątek, do symulacji punktu potrzebuje 6 zmiennych. Pierwse 3 z nich to położenie punktu, kolejne 3 to miejsce na obliczone przyspieszenie.
+??? help please - jak to ładnie opisać ??? \linebreak
+Ograniczeniem w tej kwestii jest podstępna pamięć, trzeba wykorzystać jak największą część zarówno pamięci współdzielonej, jak i prywatnej. \linebreak
+
+
+%Dostępną pamięć należy pomniejszyć o rozmiar zmiennych kontrolnych pętli, następnie resztę pamięci podzielić przez rozmiar pamięci do symulacji jednego punktu materialnego.
+Do symulacji punktu potrzebne jest 7 zmiennych zmiennoprzecinkowych. Pierwsze 3 z nich to obecne położenie punktu, 3 kolejne na sumę sił działających na dany punkt, ostatnia zmienna to masa punktu materialnego. Zmienne służące du sumowania sił lepiej trzymać w pamięci prywatnej, ponieważ częściej są modyfikowane od pozostałych. 
+
+
+W przypadku użycia zmiennych pojedynczej precyzji daje to 28 B na punkt. Następnie wynik należy zaokrąglić w dół do wartości podzielnej przez rozmiar operacji wektorowej. W przypadku karty Radeon 6770 daje to 16 punktów na wątek, a /* inne karty ??? */
+
+??? ??? \linebreak
+
+%W przypadku problemu N-Ciał opłaca się wykorzystać całą dostępną pamięć prywatną i współdzieloną. więc można algorytm uzależnić od wielkości dostępnej pamięci. Ilość jednoczeście przetwarzanych punktów wyraża się wzorem:
+
+%$$ ilosc_punktow = (rozmiar_operacji_wekt*ilosc_wartow_na_workflow) * [ (dostepna_pamiec - pamiec_na_zmienne_kontrolne) / rozmiar_punktu / (rozmiar_operacji_wekt*ilosc_wartow_na_workflow) ] $$
+

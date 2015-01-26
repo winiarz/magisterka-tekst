@@ -19,13 +19,13 @@ OpenCl daje jednak możliwość odczytania wielu parametrów specyfikacji użąd
 
 \lstinputlisting[language=C]{Source/petla_for.c}
 
-Tak jak w przykładzie tej pracy ilość jednocześnie przetwarzanych punktów została uzależniona od dostępnej pamięci prywatnej i współdzielonej.
+W rozdziale /*tu wstawić nr rozdziału*/ w tej pracy ilość jednocześnie przetwarzanych punktów została uzależniona prostym wzorem od dostępnej pamięci prywatnej i współdzielonej oraz dostępności operacji wektorowych.
 \linebreak
 
-W innych przypadkach o wyborze optymalnej implementacji może decydować np. dostępność operacji wektorowych o odpowiednim rozmiarze, przyspieszenie sprzętowe dla funkcji takich jak sqrt, sin, log.
+Parametryzacja to jednak tylko jeden z możliwych sposobów na stworzenie implementacji przystosowującej się do sprzętu. 
+W innych przypadkach możemy mieć kilka alternatywnych implementacji. O wyborze optymalnej decydować może np. dostępność przyspieszonych sprzętowo funkcji ( np. sin, log, sqrt ), identyfikator producenta sprzętu.
 
-Sparametryzowany w ten sposób algorytm może być wykorzystany w oprogramowaniu uruchamianym na komputerze klienta. Wtedy bez względu na posiadany przez niego sprzęt będzie działało wydajnie.
+W przypadku gdy wydajność jest trudna do oszacowania na podstawie informacji podanych przez OpenCL można przed właściwą pracą aplikacji ``skalibrować'' ją, tzn. uruchomić kernele na testowych danych, zmierzyć czasy ich działania po czym wybrać ten z najkrótszym. Czynność taką wystarczy powtarzać jedynie po każdej zmianie sprzętu. \linebreak
+
+Sparametryzowany w ten sposób algorytm może być wykorzystany w oprogramowaniu uruchamianym na komputerze klienta. Wystarczy aby klient posiadał sprzęt zgodny ze standardem OpenCL, a aplikacja sama przystosuje się do niego.
 \linebreak
-
-
-
