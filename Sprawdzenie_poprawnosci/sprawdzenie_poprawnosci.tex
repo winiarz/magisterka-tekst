@@ -1,0 +1,9 @@
+\section { Sprawdzanie poprawności algorytmu - czy warto o tym pisać? }
+
+Wzorcowy algorytm (wersja na CPU) został sprawdzony w następujący sposób:
+
+Test 1 - wszystkie punkty w tym samym miejscu.
+Test 2 - punky na okręgu powinny się poruszać do środka
+Test 3 - druga prędkość kosmiczna
+
+Ze względu na błędy zaokrągleń wynik jest uznawany za poprawny, jeśli nie odbiega od wzorcowego (wersji CPU) nie więcej niż z góry zadany $\epsilon$. Błędy zaokrągleń są trudne do oszacowania, przez co wartość $\epsilon$ została ustalona w sposób eksperymentaly na $\epsilon = 0.05$.
