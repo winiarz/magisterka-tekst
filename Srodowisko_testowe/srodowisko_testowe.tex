@@ -1,0 +1,26 @@
+
+\subsection {Środowisko testowe}
+
+\section { Środowisko testowe }
+
+\subsection {Sprzęt}
+
+Testy wydajności zostały przeprowadzone na kilku platformach sprzętowych:
+
+1. AMD FX6200 + Radeon6770
+2. Intel Core i5-450M + GeForce 325M
+3. AMD Phenon ??? + Radeon5850?
+4. ???
+
+
+\subsection {System operacyjny, narzędzia deweloperskie}
+Dla potrzeb tej pracy implementacja po stronie hosta zaimplementowana została w języku C++ przy użyciu kompilatora gcc. Implementacja dla CPU została zoptymalizowana za pomocą drugiego poziomu optymalizacji kompilatora gcc. Całość pracowała pod kontrolą systemu Linux ( Ubuntu 14.10 ). 
+
+\subsection {Dane testowe}
+Dane do testów zostały wygenerowane za pomocą liniowego generatora liczb pseudolosowych ``drand48''. Początkowe pozycje zostały wylosowane z kostki $[-100, 100]^3$, początkowe prędkości z $[-1,1]^3$, a masy z przedziału [1,10].
+
+
+\subsection {Pomiary czasu}
+
+Uzyskane wyniki mogłyby zostać zaburzone przez odświerzanie ekranu, platego wszystkie pomiary zostały przeprowadzone przy wyłączonym środowisku graficznym. Każdy pomiar został powtórzony 10 razy, a czasy prezentowane w tabelach są średnią arytmetyczną uzyskanych wyników. 
+
