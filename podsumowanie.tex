@@ -1,9 +1,9 @@
 
-\section{Podsumowanie (jak lepiej to nazwać?)}
+\section{Podsumowanie}
 
 %Ze względu na różnorodność kart graficznych niemożliwe jest stworzenie jednego algorytmu optymalnego dla nich wszystkich.
-Karty graficzne chociaż ich architektury są zbliżone to jednak różnią się szczegółami technicznymi. Poszczególne model ma inne rozmiary pamięci globalnej, współdzielonej jak i stałej.
-Mają inną maksymalną liczbę wątków, pogrupowaną w inne grupy w zależności od producenta ( nazywane WARP w przypadku NVIDIA, lub ... w przypadku AMD ). Przyspieszają sprzętowo różne operacje. Te różnice sprawiają, że na każdej karcie inna implementacja może okazać się tą optymalną. \linebreak
+Karty graficzne chociaż ich architektury są zbliżone to jednak różnią się szczegółami technicznymi. Poszczególne modele mają inne rozmiary pamięci globalnej, współdzielonej jak i stałej.
+Mają inną maksymalną liczbę wątków, pogrupowaną w inne grupy w zależności od producenta (nazywane WARP w przypadku NVIDIA, lub ... w przypadku AMD). Przyspieszają sprzętowo różne operacje. Te różnice sprawiają, że na każdej karcie inna implementacja może okazać się tą optymalną. \linebreak
 
 
 Standard OpenCL daje tylko możliwość uruchomienia algorytmu na wielu platformach sprzętowych. Jednak znajomość sprzętu na jakim kernel będzie wykonywany dalej jest niezbędna do optymalizacji. 
@@ -14,16 +14,16 @@ Uniemożliwia to napisanie programu, który działa optymalnie na każdym sprzę
 
 %Widać to na przykładzie tej pracy. Zastosowane optymalizacje mają zupełnie inny wpływ na wydajnopść algorytmu w zależności od modelu GPU. 
 
-OpenCl daje jednak możliwość odczytania wielu parametrów specyfikacji użądzenia. Można wykorzystać je jako parametry algorytmu. Najprostszym tego przykładem jest tradycyjna równoległa pętla for. Parametrem w tym przypadku jest maksymalna liczba wątków dostępnych na użądzeniu.
+OpenCl daje jednak możliwość odczytania wielu parametrów specyfikacji urządzenia. Można wykorzystać je jako parametry algorytmu. Najprostszym tego przykładem jest tradycyjna równoległa pętla for. Parametrem w tym przypadku jest maksymalna liczba wątków dostępnych na użądzeniu.
 \linebreak
 
-\lstinputlisting[language=C]{Source/petla_for.c}
+\lstinputlisting[language=C++]{Source/petla_for.c}
 
 W rozdziale /*tu wstawić nr rozdziału*/ w tej pracy ilość jednocześnie przetwarzanych punktów została uzależniona prostym wzorem od dostępnej pamięci prywatnej i współdzielonej oraz dostępności operacji wektorowych.
 \linebreak
 
 Parametryzacja to jednak tylko jeden z możliwych sposobów na stworzenie implementacji przystosowującej się do sprzętu. 
-W innych przypadkach możemy mieć kilka alternatywnych implementacji. O wyborze optymalnej decydować może np. dostępność przyspieszonych sprzętowo funkcji ( np. sin, log, sqrt ), identyfikator producenta sprzętu.
+W innych przypadkach możemy mieć kilka alternatywnych implementacji. O wyborze optymalnej decydować może np. dostępność przyspieszonych sprzętowo funkcji (np. sin, log, sqrt), identyfikator producenta sprzętu.
 
 W przypadku gdy wydajność jest trudna do oszacowania na podstawie informacji podanych przez OpenCL można przed właściwą pracą aplikacji ``skalibrować'' ją, tzn. uruchomić kernele na testowych danych, zmierzyć czasy ich działania po czym wybrać ten z najkrótszym. Czynność taką wystarczy powtarzać jedynie po każdej zmianie sprzętu. \linebreak
 
