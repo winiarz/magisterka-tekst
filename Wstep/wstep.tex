@@ -2,13 +2,18 @@
 %  Ogólnie o zastosowaniu GPU to ogólnych obliczeń
 
 
-Karty graficzne początkowo służyły tylko do wyświetlania obrazu na ekranie komputera.
-Karty graficzene od kilku lat nie służą już tylko do wyświetlania obrazu na ekranie monitora. Renderowanie coraz bardziej szczegółowej grafiki 3D wymusiło ogromny wzrost ich mocy obliczeniowej, a dodanie możliwości przeprogramowania potoku renderowania otworzyło możliwość zastosowanie tych układów do innych celów.
-Początkowo programiści zmuszeni byli do umieszczania swoich programów w tzw. shaderach. 
-Z czasem powstały platformy takie jak CUDA, które umożliwiają wykonanie na GPU dowolnego algorytmu. 
+%Karty graficzne początkowo służyły tylko do wyświetlania obrazu na ekranie komputera.
+Karty graficzene od kilku lat nie służą już tylko do wyświetlania obrazu na ekranie monitora. Renderowanie coraz bardziej szczegółowej grafiki 3D wymusiło ogromny wzrost ich mocy obliczeniowej, a dodanie możliwości przeprogramowania potoku renderowania umożliwiło zastosowanie tych układów do innych celów.
 
-Obecnie karty graficzne znajdują zastosowanie wszędzie tam, gdzie potrzebna jest duża moc obliczeniowa, a szczególnie do wykonywania tych samych obliczeń na wielu zestawach danych.
-Są to zagadnienia takie jak: prognozowanie pogody, symulacje częsteczek, ciał niebieskich, metody Monte Carlo i wiele innych. \linebreak %wymieniać więcej???
+%(?? Początkowo programiści zmuszeni byli do umieszczania swoich programów w tzw. shaderach.   ---  może by rozwinąć ten temat ??). 
+%Co prawda na początku 
+Początkowo programiści byli zmuszeni do implementacji algorytmu w postaci tzw. shader'a, gdzie dostępne były tylko operacje typowe dla  przetwarzania grafiki 3D. Dane i wyniki obliczeń musiały być przekazywane jako tablice wierzchołków.
+
+Z czasem jednak powstały platformy, które umożliwiają wykonanie na GPU dowolnego algorytmu. Pierwszą z nich było CUDA (ang. Compute Unified Device Architecture) opracowane przez NVIDIA Corporation w 2007 r. Niestety nie jest ona kompatybilna z GPU innych producentów. 
+Dwa lata później powstał pierwszy otwarty standard - OpenCL (ang. Open Computing Language). ?? Co by tu jeszcze dopisać? o tym że działa na prawie każdym GPU, systemie, a nawet na FPGA ?? \linebreak
+
+Obecnie karty graficzne znajdują zastosowanie wszędzie tam, gdzie potrzebna jest duża moc obliczeniowa, a szczególnie gdy trzeba wykonać te same obliczenia na wielu zestawach danych.
+Są to zagadnienia takie jak: prognozowanie pogody, symulacje częsteczek, ciał niebieskich, metody Monte Carlo i wiele innych naukowych obliczeń. \linebreak %wymieniać więcej???
 
 
 
@@ -18,7 +23,9 @@ Jednym z takich zagadnień są symulacje punktów materialnych.
 Każdy z tych punktów jest osobnym zestawem danych, na którym trzeba wykonać jednakowe obliczenia, co ułatwia stworzenie równoległego algorytmu bez zbyt częstej synchronizacji.
 %więc stosunkowo łatwo jest napisać algorytm dla dużej ilości wątków, który nie potrzebuje zbyt częstej synchronizacji.
 
-Niniejsza praca skupia się na jednym z takich zagadnień, a mianowicie problemie N-Ciał.\linebreak
+
+?? Pisać tu o czym jest praca ??
+%Niniejsza praca skupia się na jednym z takich zagadnień, a mianowicie problemie N-Ciał. \linebreak
 
 
 %Są to między innymi obliczenia fizyczne, symulacje białek, prognozowanie pogody, metody Monte Carlo i wiele innych. 
