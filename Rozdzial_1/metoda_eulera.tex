@@ -1,11 +1,19 @@
 
 \subsubsection {Metoda Eulera}
-Metoda Eulera polega na przybliżeniu rozwiązania za pomocą szeregu Taylor'a w którym zachowano tylko pierwszą pochodną.
-W przypadku równań ruchu mechaniki klasycznej metoda Eulera sprowadza się  do wzorów:
+
+Metoda Eulera służy do rozwiązywania równań różniczkowych pierwszego rzędu, czyli:
+
+$$x' = f(x)$$
+
+Rozwiązanie takiego równania przybliża się za pomocą dwóch pierwszych wyrazów szeregu Taylora:
+
+$$x(t+\Delta t) = x(t) + \Delta t \cdot f(x)$$
+
+W przypadku równań ruchu wystarczy zastosować tą metodę dwukrotnie. Pierwszy raz do obliczenia prędkości za pomocą przyspieszenia. Drugi do obliczenia położenia używając prędkości z pierwszego kroku. Całość sprowadza się do wzorów:
 
 \begin{center}
 \input{Wzory/metoda_eulera.tex}
 \end{center}
 
-Jest to jedna z najprostszych metod, wymaga jednorazowego obliczenia przyspieszenia na krok czasowy.
-Jej błąd jest rzędu $ O( \Delta t ^{2} ) $,
+%Jest to jedna z najprostszych metod, wymaga jednorazowego obliczenia przyspieszenia na krok czasowy.
+%Jej błąd jest rzędu $ O( \Delta t ^{2} ) $,

@@ -1,0 +1,20 @@
+
+
+\subsection {Symulowane zjawiska fizyczne}
+Problem n-ciał to zagadnienie mechaniki klasycznej polegające na obliczeniu trajektorii ruchu skończonej liczby punktów materialnych. 
+Każdy z tych punktów oddziałuje na każdy inny siłą zadaną wzorem:
+
+\begin{center}
+\input{Wzory/grawitacja_wektorowo.tex} 
+\end{center}
+
+czyli prawem powszechnego ciążenia Izaaka Newtona.\linebreak
+Przykładami takich problemów są głównie symulacje ciał niebieskich: układów planetarncyh, galaktyk, wszechświata, lecz ze względu na analogię praw fizyki używając w ten sam sposób można symulować cząstki oddziaływujęce na siebie siłą elektrostatyczną.\linebreak
+
+Obliczenie trajektorii wymaga rozwiązania układu równań różniczkowych drugiego rzędu:
+\begin{center}
+\input{Wzory/grawitacja_rozniczkowo.tex} gdzie i = 1 .. n 
+\end{center}
+
+
+Do tej pory nie rozwiązano tego układu w sposób analityczny dla $n > 2$, dlatego rozwiązanie przybliża się stosując metody numeryczne. 

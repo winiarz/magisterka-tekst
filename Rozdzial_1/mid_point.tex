@@ -1,0 +1,11 @@
+
+\subsubsection {Metoda punktu środkowego}
+
+Metoda punktu środkowego składa się z dwóch etapów. W pierwszym obliczany jest tzw. punkt środkowy. Jest to punkt leżący na środku odcinka łączącego obecne położenie z przybliżonym położeniem w następnym kroku czasowym, które wyznaczane jest za pomocą metody Eulera. W punkcie środkowym ponownie obliczane jest przyspieszenie, które jest używane do wyznaczenia następnego położenia za pomocą metody Eulera.
+
+\begin{center}
+\input{Wzory/metoda_midpoint.tex}
+\end{center}
+
+%Metoda punktu środkowego jest dokładniejsza od metody Eulera, jej błąd jest rzędu $ O( \Delta t ^{3} ) $
+%Jednak w przypadku problemu N-Ciał metoda ta jest bardzo niewydajna. Wymaga ona bowiem dwukrotnego wykonywania obliczeń przyspieszeń punktów, a zatem odległości między nimi, co stanowi najdłuższy etap obliczeń.

@@ -7,10 +7,13 @@ Karty graficzene od kilku lat nie służą już tylko do wyświetlania obrazu na
 
 %(?? Początkowo programiści zmuszeni byli do umieszczania swoich programów w tzw. shaderach.   ---  może by rozwinąć ten temat ??). 
 %Co prawda na początku 
-Początkowo programiści byli zmuszeni do implementacji algorytmu w postaci tzw. shader'a, gdzie dostępne były tylko operacje typowe dla  przetwarzania grafiki 3D. Dane i wyniki obliczeń musiały być przekazywane jako tablice wierzchołków.
+Początkowo programiści byli zmuszeni do implementacji algorytmu w postaci tzw. shader'a, gdzie dostępne były tylko operacje typowe dla  przetwarzania grafiki 3D, zaś dane i wyniki obliczeń musiały być przekazywane jako tablice wierzchołków.
 
-Z czasem jednak powstały platformy, które umożliwiają wykonanie na GPU dowolnego algorytmu. Pierwszą z nich było CUDA (ang. Compute Unified Device Architecture) opracowane przez NVIDIA Corporation w 2007 r. Niestety nie jest ona kompatybilna z GPU innych producentów. 
-Dwa lata później powstał pierwszy otwarty standard - OpenCL (ang. Open Computing Language). ?? Co by tu jeszcze dopisać? o tym że działa na prawie każdym GPU, systemie, a nawet na FPGA ?? \linebreak
+Z czasem jednak powstały platformy, które umożliwiają wykonanie na GPU dowolnego algorytmu. Pierwszą z nich było CUDA (ang. Compute Unified Device Architecture) opracowane przez NVIDIA Corporation w 2007 r. Niestety nie jest ona kompatybilna z układami innych producentów. 
+
+
+Dwa lata później powstał pierwszy otwarty standard - OpenCL (ang. Open Computing Language). Jest on kompatybilny z większością systemów operacyjnych, GPU, a nawet z układami FPGA (ang. Field Programmable Gate Array). \linebreak
+
 
 Obecnie karty graficzne znajdują zastosowanie wszędzie tam, gdzie potrzebna jest duża moc obliczeniowa, a szczególnie gdy trzeba wykonać te same obliczenia na wielu zestawach danych.
 Są to zagadnienia takie jak: prognozowanie pogody, symulacje częsteczek, ciał niebieskich, metody Monte Carlo i wiele innych naukowych obliczeń. \linebreak %wymieniać więcej???
@@ -20,7 +23,7 @@ Są to zagadnienia takie jak: prognozowanie pogody, symulacje częsteczek, ciał
 
 
 Jednym z takich zagadnień są symulacje punktów materialnych. 
-Każdy z tych punktów jest osobnym zestawem danych, na którym trzeba wykonać jednakowe obliczenia, co ułatwia stworzenie równoległego algorytmu bez zbyt częstej synchronizacji.
+Każdy z tych punktów jest osobnym zestawem danych, na którym trzeba wykonać jednakowe obliczenia, co ułatwia stworzenie równoległego algorytmu bez zbyt częstej synchronizacji wątków.
 %więc stosunkowo łatwo jest napisać algorytm dla dużej ilości wątków, który nie potrzebuje zbyt częstej synchronizacji.
 
 

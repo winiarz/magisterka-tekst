@@ -1,52 +1,22 @@
 
 \section { Problem N-Cial }
-\subsection {Symulowane zjawiska fizyczne}
-Problem n-ciał to zagadnienie mechaniki klasycznej polegające na obliczeniu trajektorii ruchu skończonej liczby punktów materialnych. 
-Każdy z tych punktów oddziałuje na każdy inny siłą zadaną wzorem:
-
-\begin{center}
-\input{Wzory/grawitacja_wektorowo.tex} 
-\end{center}
-
-czyli prawem powszechnego ciążenia Izaaka Newtona.\linebreak
-Przykładami takich problemów mogą być symulacja galaktyki, układu planetarnego itp.
-Ze względu na podobieństwo (wzorów)/(praw fizyki) używając tego samego algorytmu można symulować cząstki oddziaływujęce na siebie siłą elektrostatyczną.\linebreak
-Obliczenie trajektorii wymaga rozwiązania układu równań różniczkowych drugiego rzędu:
-\begin{center}
-\input{Wzory/grawitacja_rozniczkowo.tex} gdzie i = 1 .. n 
-\end{center}
+\input{opis_problemu/opis_problemu.tex}
 
 
-Do tej pory nie rozwiązano tego układu w sposób analityczny dla $n > 2$, dlatego rozwiązanie przybliża się stosując metody numeryczne. Istnieje kilka metod pozwalających na przybliżanie kolejnych pozycji punktu materialnego. Oto najważniejsze z nich:
 
 \subsection {Metody symulowania punktów materialnych}
 
-Znając początkowe położenie, prędkość oraz przyspieszenie ruch punktu materialnego można symulować na kilka sposobów:
+Istnieje kilka metod numerycznych pozwalających na rozwiązanie równań mechaniki klasycznej, czyli obliczanie położeń oraz prędkości punktów materialnych w kolejnych krokach czasowych.
+
+Wszystkie wymagają podania warunków brzegowych, którymi są początkowe położenia i prędkości wszystkich punktów materialnych. Metody te różnią się od siebie jedynie dokładnością obliczeń oraz szybkością działania. Poniżej przedstawiam najważniejsze z nich. \linebreak
+
 \input{Rozdzial_1/metoda_eulera.tex}
+\input{Rozdzial_1/mid_point.tex}
+\input{Rozdzial_1/runge_kutty.tex}
 
-\subsubsection {Metoda punktu środkowego}
-Metoda punktu środkowego jest modyfikacją metody Eulera. Najpierw stosujemy metodę Eulera, tylko ze zmiejszonym o połowę krokiem czasowym. Uzyskany wynik nazywamy ``punktem środkowym''. Następnie obliczamy przyspieszenie w tym punkcie. Położenie oraz przyspieszenie punktu aktualizujemy używając punktu startowego i przyspieszenia w punkcie środkowym.
 
-\begin{center}
-\input{Wzory/metoda_midpoint.tex}
-\end{center}
 
- ??? Coś o metodach Rungego-Kutty ???
-Metoda punktu środkowego jest dokładniejsza od metody Eulera, jej błąd jest rzędu $ O( \Delta t ^{3} ) $
-Jednak w przypadku problemu N-Ciał metoda ta jest bardzo niewydajna. Wymaga ona bowiem dwukrotnego wykonywania obliczeń przyspieszeń punktów, a zatem odległości między nimi, co stanowi najdłuższy etap obliczeń.
 
-\subsubsection {Algorytm Verleta}
-Algorytm Verleta opiera się na rozwinięciu funkcji położenia w szereg Taylora do trzeciej pochodnej dla kroku czasowego do przodu i w tył.
-\linebreak
-Tu będą obliczenia
-\linebreak
-Po prostych przekształceniach otrzymujemy:
-\begin{center}
-\input{Wzory/metoda_verleta.tex}
-\end{center}
 
-Obliczenie następnego położenia w czasie nie wymaga obliczania prędkości punktu, a jedynie znajomości jego 2 poprzednich położeń. 
-Obliczenie prędkości nie jest jednak wymagane w przypadku problemu N-Ciał, gdyż siły zależą tylko od obecnego położenia punktów. 
-\linebreak
-
+\subsection{Wybór metody dla problemu N-Ciał}
 W przypadku problemu N-Ciał najbardziej czasochłonną część obliczeń stanowi obliczenie sił między punktami. Metody Rungego-Kutty zostały odrzucone ze względu na konieczność kilkukrotnego powtarzania tej części obliczeń. Metoda Verleta jest najdokladniejsza spośród pozostałych i dlatego na potrzeby tej zastosowana została na potrzeby tej pracy.
